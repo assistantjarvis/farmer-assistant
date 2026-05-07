@@ -1,0 +1,101 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Crop Recommender System</title>
+</head>
+<style>
+    .login-panel {
+        margin-top: 60px;
+        background-color: aliceblue;
+        padding: 20px;
+        border-color: black;
+        border-radius: 10px;
+    }
+    .location-panel {
+        margin-top: 10px;
+        background-color: aliceblue;
+        padding: 20px;
+        border-color: black;
+        border-radius: 10px;
+    }
+</style>
+<body background="static/home-bg.jpg">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<div class="container">
+
+	{% include 'navbar.html' %}
+
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Location</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post" action="/forcast">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control text-danger" placeholder="Location" name="location" type="text" autofocus required>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-md btn-primary btn-block" type="submit" name="login" value="Search">
+                            </div>
+                        </fieldset>
+                    </form>
+                   
+                </div>
+            </div>
+            <div class="location-panel panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-center"> {{location}}</h2>
+                </div>
+                <div class="panel-body text-center">
+                    <h3 class="text-center">{{state}} ({{country}})</h3>
+                </div>
+            </div>
+
+            {% if forcast %}
+
+            {% for data in forcast %}
+                <div class="location-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title text-center">{{data['dt_txt']}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <h5 class="panel-title text-center">temp: {{ round(data['main']['temp']-273.15,2)}} &deg;F</h5>
+                        <h5 class="panel-title text-center">feels like: {{round(data['main']['feels_like']-273.15,2)}} &deg;F</h5>
+                        <h6 class="panel-title text-center">weather {{data['weather'][0]['main']}}</h6>
+                        <h6 class="panel-title text-center">description {{data['weather'][0]['description']}}</h6>
+                    </div>
+                </div>
+                
+            {% endfor %}
+           
+
+            {% endif %}
+
+        </div>
+        <h1>If no havy rain predicted in the upcoming days, you can add fertilizers</h1>
+        <h1>If havy rain predicted in the upcoming days, you should not add fertilizers</h1>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

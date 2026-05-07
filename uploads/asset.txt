@@ -1,0 +1,4 @@
+http://127.0.0.1:5000/static/template1.html
+http://127.0.0.1:5000/static/template2.html
+http://127.0.0.1:5000/static/template3.html
+http://127.0.0.1:5000/static/template4.html

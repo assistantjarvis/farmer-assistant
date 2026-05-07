@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          
+          <!-- <li class="nav-item">
+              <a href="/" class="nav-link {% if active=='home' %} active {% endif %}" >Home</a>
+          </li>           -->
+          {% if login %}
+          <li class="nav-item">
+            <a href="/predict_fertilizer"  class="nav-link {% if active=='predictferti' %} active {% endif %}">Fertilizer Prediction</a> 
+          </li>
+            <li class="nav-item">
+                <a href="/upload" class="nav-link {% if active=='upload' %} active {% endif %}">Upload</a>
+            </li>
+            <li class="nav-item">
+                <a href="/preview"  class="nav-link {% if active=='upload' %} active {% endif %}" >Preview</a>
+            </li>
+            <li class="nav-item">
+                <a href="/forcast"  class="nav-link {% if active=='forcast' %} active {% endif %}" >Weather Forcast</a>
+            </li>  
+            <li class="nav-item">
+              <a href="/predictproduction"  class="nav-link {% if active=='predictproduction' %} active {% endif %}" >Production Prediction</a>
+            </li>
+            <li class="nav-item">
+              <a href="/cropproduction"  class="nav-link {% if active=='cropproduction' %} active {% endif %}" >Crop Prediction</a>
+            </li>  
+          {% endif %}
+          <li class="nav-item">
+              {% if login %}
+                  <a href="/logout" class="nav-link {% if active=='login' %} active {% endif %}">Log-Out</a>
+              {% else %}
+                  <a href="/login" class="nav-link {% if active=='login' %} active {% endif %}"  >Log-In</a>
+              {% endif %}
+          </li>
+
+      </ul>
+    </div>
+  </nav>

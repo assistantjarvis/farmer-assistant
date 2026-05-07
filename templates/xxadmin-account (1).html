@@ -1,0 +1,202 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Admin Account</title>
+</head>
+<style>
+    .add-keyword-panel {
+        margin-top: 150px;
+</style>
+<body background="static/soldiers-1002_1920.jpg">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<div class="container">
+	</br>
+	<!--style="visibility:hidden;"-->
+	<h3 class="text-center   badge-secondary" >Web Data Mining To Detect Online Spread Of Terrorism</h3></br>
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		  <li class="nav-item {%if active== 'Add keyword'%} active{%endif%}"> 
+			<a class="nav-link" href="?opt=add_keyword">Add keyword</span></a>
+		  </li>
+		  <li class="nav-item {%if active== 'Check Website'%} active{%endif%}"> 
+			<a class="nav-link" href="?opt=upload_file">Upload List of Website</span></a> 
+		  </li>
+		  <li class="nav-item {%if active== 'Check All Websites'%} active{%endif%}"> 
+			<a class="nav-link" href="?opt=check_all_websites">Check All Websites</span></a>
+		  </li>
+		  <li class="nav-item {%if active== 'Update Password'%} active{%endif%}"> 
+			<a class="nav-link" href="?opt=update_password">Update Password</span></a>
+		  </li>
+		  <li class="nav-item {%if active== 'View Keywords'%} active{%endif%}"> 
+			<a class="nav-link" href="?opt=view_keywords">View Keywords</span></a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link text-danger" href="/logout">Log-Out</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+	
+	
+	{%if active== 'Add keyword'%}
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+        <div class="col-md-4">	
+            <div class="add-keyword-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title badge-secondary">Add Keyword</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="get" action="">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control text-success" placeholder="Keyword" name="keyword" type="text" autofocus required>
+                            </div>
+                            <input class="btn btn-md btn-warning badge-pill btn-block" type="submit" name="opt" value="Add Keyword">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	{%endif%}
+	
+	
+	
+	{%if active== 'Check Website'%}
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+        <div class="col-md-4">	
+            <div class="add-keyword-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title badge-secondary">URL List</h3>
+                </div>
+                <div class="panel-body">
+                    <form  id="image_to_upload" class="form-signin" onSubmit="return disableForm(this);" action="file_upload" method="post" name="f" id="file_to_upload" enctype="multipart/form-data">
+						<div class="form-inline">
+							<input type="file" name="file" accept=".txt" class="form-control-lg" required>
+						</div>
+						<input class="btn btn-md btn-warning badge-pill btn-block" type="submit" value="Upload">
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+	{%endif%}
+	
+	
+
+	
+	{%if active== 'Check All Websites'%}
+	<div class="table-scrol bg-light">
+		 <h1 align="center">All Results for Keywords:</h1>
+		 <h5 align="center">{% for keyword in allKeywords %} {{ keyword.word }},  {%endfor%}</h1>
+		   <!-- <div class="table-responsive">-->
+			<table class="table table-bordered table-hover table-striped" >
+				<thead>
+				<tr>
+					<th>URL</th>
+					<th>Ratio</th>
+					<th>Partial Ratio</th>
+					<th>Token Sort Ratio</th>
+					<th>Token Set Ratio</th>
+					<th>Total score</th>
+					
+				</tr>
+				</thead>
+				
+				{%for key in sorted_keys%} 
+				<tr>
+					<td>{{resultSets[key].url}}</td>
+					<td align="center">{{resultSets[key].resultSet.Ratio}}</td>
+					<td align="center">{{resultSets[key].resultSet.Partial_Ratio}}</td>
+					<td align="center">{{resultSets[key].resultSet.Token_Sort_Ratio}}</td>
+					<td align="center">{{resultSets[key].resultSet.Token_Set_Ratio}}</td>
+					<td align="center">{{resultSets[key].total}}</td>
+				</tr>
+
+				{%endfor%} 
+			</table>
+	</div>
+	{%endif%}
+	
+	
+	{%if active== 'Update Password'%}
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+        <div class="col-md-4">	
+            <div class="add-keyword-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title badge-secondary">Update Password</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post" action="/update_password">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control text-success" placeholder="old password" name="oldpassword" type="password" autofocus required>>
+                            </div>
+							<div class="form-group">
+                                <input class="form-control text-success" placeholder="new password" name="newpassword1" type="password" autofocus required>>
+                            </div>
+							<div class="form-group">
+                                <input class="form-control text-success" placeholder="retype password" name="newpassword2" type="password" autofocus required>>
+                            </div>
+                            <input class="btn btn-md btn-warning badge-pill btn-block" type="submit" name="opt" value="Update Password">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	{%endif%}
+	
+	
+	
+	{%if active== 'View Keywords'%}
+	<div class="table-scrol bg-light">
+		 <h1 align="center">All Keywords</h1>
+		   <!-- <div class="table-responsive">-->
+			<table class="table table-bordered table-hover table-striped" >
+				<thead>
+				<tr>
+					<th>INDEX</th>
+					<th>Keyword</th>
+					
+					<th>DELETE</th>
+				</tr>
+				</thead>
+				{%for keyword in allKeywords%} 
+				<tr>
+					<td>{{keyword.index}}</td>
+					<td>{{keyword.word}}</td>
+					<td><a href="?opt=view_keywords&del_id={{keyword.index}}"><button class="btn btn-danger">Delete</button></a></td>
+				</tr>
+
+				{%endfor%} 
+			</table>
+	</div>
+	{%endif%}
+			
+	
+	
+</div>
+
+
+
+
+</body>
+
+</html>

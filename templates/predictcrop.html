@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Crop Recommender System</title>
+</head>
+<style>
+    .login-panel {
+        margin-top: 150px;
+        background-color: aliceblue;
+        padding: 20px;
+        border-color: black;
+        border-radius: 10px;
+    }
+</style>
+<body background="static/home-bg.jpg">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<div class="container">
+
+	{% include 'navbar.html' %}
+
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Crop Prediction</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post" action="/cropproduction">
+                        <fieldset>
+                            <div class="form-group">
+                                <select name="state" class="form-control">
+                                    {% for state in states %}
+                                    <option value="{{state}}" {% if state == selstate %} selected {% endif %}>{{state}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select name="district" class="form-control">
+                                    {% for district in districts %}
+                                    <option value="{{district}}" {% if district == seldistrict %} selected {% endif %}>{{district}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>  
+
+                            <div class="form-group">
+                                <select name="session" class="form-control">
+                                    {% for session in sessions %}
+                                    <option value="{{session}}" {% if session == selsession %} selected {% endif %}>{{session}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div> 
+
+                            
+
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Crop Year" name="year" value="{{year}}" type="number" required>
+                            </div>
+                           
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Crop Area" name="area"  value="{{area}}" type="number" required>
+                            </div>
+                          
+                            <div class="form-group">
+                                <input class="btn btn-md btn-success btn-block" type="submit" name="predict" value="Predict">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <h2>Prediction is: <strong>{{crop_name}}</strong></h2>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
