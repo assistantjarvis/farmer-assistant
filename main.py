@@ -566,16 +566,16 @@ def predictproduction():
             print('Production: ',result[0],'\n\n\n\n\n\n\n')
 
             return render_template('predictproduction.html',login=True, active="predictproduction", states=__STATES,
-                                                                     districts=__DISTRICTS, sessions=__SESSIONS,
-                                                                     crops=__CROPS, production=result[0], selstate=state,
-                                                                     seldistrict=district,selsession=session,selcrop=crop,year=year,area=area ) 
+                                                                    districts=__DISTRICTS, sessions=__SESSIONS,
+                                                                    crops=__CROPS, production=result[0], selstate=state,
+                                                                    seldistrict=district,selsession=session,selcrop=crop,year=year,area=area ) 
 
 
 
 
     return render_template('predictproduction.html',login=True, active="predictproduction", states=__STATES,
-                                                                     districts=__DISTRICTS, sessions=__SESSIONS,
-                                                                     crops=__CROPS) 
+                                                                    districts=__DISTRICTS, sessions=__SESSIONS,
+                                                                    crops=__CROPS) 
 
 
 
@@ -604,9 +604,9 @@ def cropproduction():
             print('crop_code: ',crop_name)
 
             return render_template('predictcrop.html',login=True, active="predictproduction", states=__STATES,
-                                                                     districts=__DISTRICTS, sessions=__SESSIONS,
-                                                                     crop_name=crop_name, selstate=state,
-                                                                     seldistrict=district,selsession=session,year=year,area=area) 
+                                                                    districts=__DISTRICTS, sessions=__SESSIONS,
+                                                                    crop_name=crop_name, selstate=state,
+                                                                    seldistrict=district,selsession=session,year=year,area=area) 
 
 
 

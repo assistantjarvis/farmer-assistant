@@ -5,12 +5,14 @@ requesting simple weather forecasts (via OpenWeatherMap), and interacting with
 crop prediction utilities included in this repository.
 
 ## Features
+
 - Web UI for uploading CSV datasets and previewing them
 - Simple forecast lookup using OpenWeatherMap API
 - Crop prediction helpers and mappings used by the backend
 - Basic authentication (default development credentials: `admin` / `admin`)
 
 ## Tech stack
+
 - Python (3.8+)
 - Flask
 - pandas, numpy
@@ -50,6 +52,7 @@ python -m flask run
 The app will be available at http://127.0.0.1:5000 by default.
 
 ## Usage
+
 - Open the app in your browser and log in (username: `admin`, password: `admin`).
 - Use the `Upload` page to upload a CSV (saved into the `uploads/` folder).
 - After uploading you can preview the data via the `Preview` page.
@@ -57,6 +60,7 @@ The app will be available at http://127.0.0.1:5000 by default.
   internet and the OpenWeatherMap API key included in `main.py`).
 
 ## Important files
+
 - [main.py](main.py) — Flask application and routes.
 - [crop-final.py](crop-final.py) — (auxiliary) crop prediction scripts.
 - [users.py](users.py) — user-related helpers.
@@ -65,6 +69,7 @@ The app will be available at http://127.0.0.1:5000 by default.
 - `static/` — static assets (CSS/JS/images) used by templates.
 
 ## Notes & next steps
+
 - The repository includes an OpenWeatherMap API key in `main.py`; consider
   replacing it with an environment variable for production use.
 - There is no `requirements.txt` or `setup.py`; consider adding one for
@@ -74,11 +79,14 @@ The app will be available at http://127.0.0.1:5000 by default.
   is the simplest approach.
 
 ## Contributing
+
 Feel free to open issues or submit PRs. For quick improvements, consider:
+
 - adding a `requirements.txt`
 - adding tests and a basic CI workflow
 - securing secrets (move API keys to environment variables)
 
 ## License
+
 This project currently has no explicit license. Add a `LICENSE` file to clarify
 permissions for reuse.
