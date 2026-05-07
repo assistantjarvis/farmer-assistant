@@ -8,7 +8,7 @@ import array
 import datetime
 #from operator import itemgetter, attrgetter
 
-weather_key = "243bcb47bdea9ca83bca929eddc3aeb4"
+weather_key = "3bc175dba1c7f6f0bc422db3fc5b88b8"
 weather_url = "https://api.openweathermap.org/"
 geo_url = "geo/1.0/direct?"
 weather_req = "data/2.5/forecast?"
